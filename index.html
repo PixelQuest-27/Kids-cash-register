@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Cash Register</title>
+  <style>
+    :root {
+      --bg: #fff0f6;
+      --card: #ffffff;
+      --border: #ff85c0;
+      --primary: #eb2f96;
+      --secondary: #722ed1;
+      --accent: #13c2c2;
+      --text: #391085;
+      --drawer-bg: #fffbe6;
+    }
+
+    body.tigran {
+      --bg: #e6f7ff;
+      --card: #ffffff;
+      --border: #40a9ff;
+      --primary: #096dd9;
+      --secondary: #389e0d;
+      --accent: #fa8c16;
+      --text: #002766;
+      --drawer-bg: #f6ffed;
+    }
+
+    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+
+    .register {
+      width: 100%;
+      max-width: 680px;
+      background: var(--card);
+      border: 6px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 12px 0 var(--border);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 3px dashed var(--border);
+    }
+
+    select {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 16px;
+      border: 4px solid var(--primary);
+      background: var(--bg);
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    .balance-box {
+      background: var(--text);
+      color: #52c41a;
+      font-family: monospace;
+      font-size: 2.2rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 16px;
+      border: 4px solid var(--border);
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      flex: 1;
+      font-size: 1.2rem;
+      padding: 12px;
+      border-radius: 14px;
+      border: 3px solid var(--border);
+    }
+
+    button {
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 18px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.1s;
+    }
+
+    button:active { transform: scale(0.95); }
+    .btn-set { background: var(--secondary); }
+    .btn-reset { background: #ff4d4f; }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .item-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 110px;
+      font-size: 1.3rem;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+    }
+
+    .btn-oj { background: #fa8c16; }
+    .btn-bread { background: #d48806; }
+    .btn-house { background: var(--accent); }
+
+    .stacked-word { display: block; line-height: 1.1; }
+    .price-tag {
+      margin-top: 6px;
+      background: rgba(255,255,255,0.25);
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+
+    .drawer {
+      background: var(--drawer-bg);
+      border: 4px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 20px;
+      min-height: 120px;
+    }
+
+    .drawer-title { font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .bills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bill {
+      width: 115px;
+      height: 56px;
+      border-radius: 10px;
+      border: 3px solid #237804;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: #135200;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+    }
+
+    .bill-100 { background: #b7eb8f; border-color: #389e0d; }
+    .bill-50  { background: #ffd6e7; border-color: #c41d7f; color: #780650; }
+    .bill-20  { background: #bae7ff; border-color: #096dd9; color: #003a8c; }
+    .bill-10  { background: #ffe7ba; border-color: #d46b08; color: #873800; }
+    .bill-5   { background: #efdbff; border-color: #531dab; color: #22075e; }
+    .bill-1   { background: #d9f7be; border-color: #52c41a; color: #135200; }
+
+    .receipt {
+      background: #fafafa;
+      border: 3px dashed #bfbfbf;
+      border-radius: 16px;
+      padding: 16px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .receipt-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="register">
+    <div class="top-bar">
+      <select id="accountSelect" onchange="switchAccount()">
+        <option value="Sophie">Sophie</option>
+        <option value="Tigran">Tigran</option>
+      </select>
+      <div class="balance-box" id="balanceDisplay">$0</div>
+    </div>
+
+    <div class="controls">
+      <input type="number" id="startCashInput" placeholder="Enter starting money..." min="0" />
+      <button class="btn-set" onclick="setStartingCash()">Set Cash</button>
+      <button class="btn-reset" onclick="resetAccount()">Reset</button>
+    </div>
+
+    <div class="items-grid">
+      <button class="item-btn btn-oj" onclick="buyItem('Orange Juice', 1)">
+        <span class="stacked-word">Orange</span>
+        <span class="stacked-word">Juice</span>
+        <span class="price-tag">$1</span>
+      </button>
+      <button class="item-btn btn-bread" onclick="buyItem('Bread', 2)">
+        <span>Bread</span>
+        <span class="price-tag">$2</span>
+      </button>
+      <button class="item-btn btn-house" onclick="buyItem('House', 10)">
+        <span>House</span>
+        <span class="price-tag">$10</span>
+      </button>
+    </div>
+
+    <div class="drawer">
+      <div class="drawer-title">Cash Drawer (Paper Bills Only)</div>
+      <div class="bills-container" id="billsContainer"></div>
+    </div>
+
+    <div class="receipt">
+      <strong>Receipt Log</strong>
+      <div id="receiptList"></div>
+    </div>
+  </div>
+
+  <script>
+    const accounts = {
+      Sophie: { balance: 25, receipts: [] },
+      Tigran: { balance: 25, receipts: [] }
+    };
+    let currentUser = 'Sophie';
+
+    function playSound(freq, type = 'sine', duration = 0.15) {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    }
+
+    function switchAccount() {
+      currentUser = document.getElementById('accountSelect').value;
+      document.body.className = currentUser === 'Tigran' ? 'tigran' : '';
+      playSound(520, 'triangle', 0.12);
+      render();
+    }
+
+    function setStartingCash() {
+      const val = Math.floor(Number(document.getElementById('startCashInput').value));
+      if (val >= 0) {
+        accounts[currentUser].balance = val;
+        accounts[currentUser].receipts = [];
+        playSound(660, 'sine', 0.2);
+        render();
+      }
+    }
+
+    function buyItem(name, price) {
+      const acc = accounts[currentUser];
+      if (acc.balance >= price) {
+        acc.balance -= price;
+        acc.receipts.unshift({ name, price });
+        playSound(880, 'square', 0.12);
+        setTimeout(() => playSound(1100, 'sine', 0.18), 80);
+        render();
+      } else {
+        playSound(180, 'sawtooth', 0.25);
+        alert("Not enough money in the register!");
+      }
+    }
+
+    function resetAccount() {
+      accounts[currentUser].balance = 0;
+      accounts[currentUser].receipts = [];
+      document.getElementById('startCashInput').value = '';
+      playSound(300, 'triangle', 0.2);
+      render();
+    }
+
+    function render() {
+      const acc = accounts[currentUser];
+      document.getElementById('balanceDisplay').textContent = `$${acc.balance}`;
+
+      const billsContainer = document.getElementById('billsContainer');
+      billsContainer.innerHTML = '';
+      let remaining = acc.balance;
+      const denominations =;
+
+      for (const denom of denominations) {
+        while (remaining >= denom) {
+          const billEl = document.createElement('div');
+          billEl.className = `bill bill-${denom}`;
+          billEl.textContent = `$${denom}`;
+          billsContainer.appendChild(billEl);
+          remaining -= denom;
+        }
+      }
+
+      const receiptList = document.getElementById('receiptList');
+      receiptList.innerHTML = acc.receipts.map(item => `
+        <div class="receipt-item">
+          <span>${item.name}</span>
+          <strong>-$${item.price}</strong>
+        </div>
+      `).join('');
+    }
+
+    render();
+  </script>
+</body>
+</html>
