@@ -6,325 +6,417 @@
   <title>Kids Cash Register</title>
   <style>
     :root {
-      --bg: #fff0f6;
-      --card: #ffffff;
-      --border: #ff85c0;
-      --primary: #eb2f96;
-      --secondary: #722ed1;
-      --accent: #13c2c2;
-      --text: #391085;
+      --bg-grad: linear-gradient(135deg, #ffe6f2 0%, #f3e8ff 100%);
+      --machine-bg: #fff5f9;
+      --machine-border: #ff66b3;
+      --machine-shadow: #d9368b;
+      --header-bg: #ff85c0;
+      --select-bg: #ffffff;
+      --select-text: #c41d7f;
+      --select-border: #eb2f96;
       --drawer-bg: #fffbe6;
+      --drawer-border: #ffc53d;
+      --drawer-inner: #fff1b8;
+      --text-main: #531dab;
+      --set-btn: #722ed1;
+      --set-shadow: #391085;
+      --house-grad: linear-gradient(180deg, #36cfc9 0%, #08979c 100%);
+      --house-shadow: #00474f;
     }
 
-    body.tigran {
-      --bg: #e6f7ff;
-      --card: #ffffff;
-      --border: #40a9ff;
-      --primary: #096dd9;
-      --secondary: #389e0d;
-      --accent: #fa8c16;
-      --text: #002766;
+    body.theme-blue {
+      --bg-grad: linear-gradient(135deg, #e6f7ff 0%, #e6fffb 100%);
+      --machine-bg: #f0f9ff;
+      --machine-border: #36cfc9;
+      --machine-shadow: #08979c;
+      --header-bg: #40a9ff;
+      --select-bg: #ffffff;
+      --select-text: #0050b3;
+      --select-border: #096dd9;
       --drawer-bg: #f6ffed;
+      --drawer-border: #73d13d;
+      --drawer-inner: #d9f7be;
+      --text-main: #003a8c;
+      --set-btn: #389e0d;
+      --set-shadow: #135200;
+      --house-grad: linear-gradient(180deg, #597ef7 0%, #1d39c4 100%);
+      --house-shadow: #061178;
     }
 
-    * { box-sizing: border-box; font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; }
+    body.theme-orange {
+      --bg-grad: linear-gradient(135deg, #fff7e6 0%, #fff1b8 100%);
+      --machine-bg: #fffbe6;
+      --machine-border: #ffa940;
+      --machine-shadow: #d46b08;
+      --header-bg: #fa8c16;
+      --select-bg: #ffffff;
+      --select-text: #ad4e00;
+      --select-border: #d46b08;
+      --drawer-bg: #f6ffed;
+      --drawer-border: #95de64;
+      --drawer-inner: #d9f7be;
+      --text-main: #873800;
+      --set-btn: #d4380d;
+      --set-shadow: #871400;
+      --house-grad: linear-gradient(180deg, #36cfc9 0%, #08979c 100%);
+      --house-shadow: #00474f;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+    }
+
     body {
-      background: var(--bg);
-      color: var(--text);
       margin: 0;
-      padding: 20px;
+      min-height: 100vh;
+      background: var(--bg-grad);
+      color: var(--text-main);
       display: flex;
       justify-content: center;
-      transition: background 0.3s ease;
+      align-items: flex-start;
+      padding: 24px 16px;
+      transition: all 0.3s ease;
     }
 
-    .register {
+    .register-body {
       width: 100%;
-      max-width: 680px;
-      background: var(--card);
-      border: 6px solid var(--border);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 12px 0 var(--border);
+      max-width: 640px;
+      background: var(--machine-bg);
+      border: 6px solid var(--machine-border);
+      border-radius: 32px;
+      padding: 22px;
+      box-shadow: 0 14px 0 var(--machine-shadow), 0 20px 35px rgba(0,0,0,0.12);
     }
 
-    .top-bar {
+    .top-header {
+      background: var(--header-bg);
+      padding: 14px 18px;
+      border-radius: 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 3px dashed var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      box-shadow: inset 0 -4px 0 rgba(0,0,0,0.12);
+    }
+
+    .profile-wrap {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     select {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 16px;
-      border: 4px solid var(--primary);
-      background: var(--bg);
-      color: var(--primary);
+      border: 4px solid var(--select-border);
+      background: var(--select-bg);
+      color: var(--select-text);
       cursor: pointer;
+      outline: none;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.15);
     }
 
-    .balance-box {
-      background: var(--text);
-      color: #52c41a;
-      font-family: monospace;
-      font-size: 2.2rem;
+    .mini-btn {
+      font-size: 0.95rem;
       font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 16px;
-      border: 4px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 14px;
+      border: 3px solid #ffffff;
+      background: rgba(0, 0, 0, 0.22);
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.08s;
     }
 
-    .controls {
+    .mini-btn:active {
+      transform: translateY(2px);
+    }
+
+    .account-editor {
+      display: none;
+      background: #ffffff;
+      border: 4px solid var(--machine-border);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+    }
+
+    .account-editor.open {
+      display: block;
+    }
+
+    .editor-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .editor-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .editor-row input[type="text"] {
+      flex: 1;
+      min-width: 160px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 3px solid #d9d9d9;
+      outline: none;
+    }
+
+    .theme-choices {
+      display: flex;
+      gap: 8px;
+    }
+
+    .theme-pill {
+      padding: 8px 14px;
+      border-radius: 14px;
+      border: 3px solid transparent;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+      opacity: 0.75;
+    }
+
+    .theme-pill.selected {
+      opacity: 1;
+      border-color: #262626;
+      transform: scale(1.06);
+    }
+
+    .pill-pink { background: #eb2f96; }
+    .pill-blue { background: #1890ff; }
+    .pill-orange { background: #fa8c16; }
+
+    .led-screen {
+      background: #141414;
+      border: 5px solid #434343;
+      border-radius: 18px;
+      padding: 8px 20px;
+      text-align: right;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
+    }
+
+    .led-caption {
+      font-size: 0.75rem;
+      color: #8c8c8c;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: monospace;
+    }
+
+    .led-amount {
+      font-family: 'Courier New', monospace;
+      font-size: 2.3rem;
+      font-weight: bold;
+      color: #52c41a;
+      text-shadow: 0 0 10px rgba(82, 196, 26, 0.6);
+      line-height: 1.1;
+    }
+
+    .money-input-bar {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 20px;
+      border: 3px solid var(--machine-border);
     }
 
     input[type="number"] {
       flex: 1;
       font-size: 1.2rem;
-      padding: 12px;
+      font-weight: bold;
+      padding: 10px 14px;
       border-radius: 14px;
-      border: 3px solid var(--border);
+      border: 3px solid #d9d9d9;
+      color: #262626;
+      outline: none;
+      min-width: 0;
     }
 
-    button {
-      font-size: 1.1rem;
+    input[type="number"]:focus {
+      border-color: var(--machine-border);
+    }
+
+    .action-btn {
+      font-size: 1.05rem;
       font-weight: bold;
       border: none;
-      border-radius: 16px;
-      padding: 12px 18px;
+      border-radius: 14px;
+      padding: 10px 16px;
+      color: #ffffff;
       cursor: pointer;
-      color: white;
-      transition: transform 0.1s;
+      transition: transform 0.08s;
     }
 
-    button:active { transform: scale(0.95); }
-    .btn-set { background: var(--secondary); }
-    .btn-reset { background: #ff4d4f; }
+    .action-btn:active {
+      transform: translateY(4px);
+    }
 
-    .items-grid {
+    .btn-set {
+      background: var(--set-btn);
+      box-shadow: 0 5px 0 var(--set-shadow);
+    }
+
+    .btn-reset {
+      background: #ff4d4f;
+      box-shadow: 0 5px 0 #a8071a;
+    }
+
+    .btn-cancel {
+      background: #8c8c8c;
+      box-shadow: 0 5px 0 #434343;
+    }
+
+    .store-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .item-btn {
+      border: none;
+      border-radius: 22px;
+      padding: 16px 10px;
+      color: #ffffff;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 110px;
-      font-size: 1.3rem;
-      box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+      min-height: 125px;
+      transition: transform 0.08s;
+      text-shadow: 1px 2px 0 rgba(0,0,0,0.2);
     }
 
-    .btn-oj { background: #fa8c16; }
-    .btn-bread { background: #d48806; }
-    .btn-house { background: var(--accent); }
-
-    .stacked-word { display: block; line-height: 1.1; }
-    .price-tag {
-      margin-top: 6px;
-      background: rgba(255,255,255,0.25);
-      padding: 2px 10px;
-      border-radius: 10px;
-      font-size: 1.1rem;
+    .item-btn:active {
+      transform: translateY(6px);
     }
 
-    .drawer {
+    .btn-oj {
+      background: linear-gradient(180deg, #ffa940 0%, #fa8c16 100%);
+      box-shadow: 0 7px 0 #ad4e00;
+    }
+
+    .btn-bread {
+      background: linear-gradient(180deg, #ffc53d 0%, #d48806 100%);
+      box-shadow: 0 7px 0 #874d00;
+    }
+
+    .btn-house {
+      background: var(--house-grad);
+      box-shadow: 0 7px 0 var(--house-shadow);
+    }
+
+    .stacked-word {
+      display: block;
+      font-size: 1.45rem;
+      font-weight: bold;
+      line-height: 1.05;
+    }
+
+    .single-word {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .price-pill {
+      margin-top: 8px;
+      background: rgba(255, 255, 255, 0.28);
+      padding: 3px 14px;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: bold;
+    }
+
+    .cash-drawer {
       background: var(--drawer-bg);
-      border: 4px solid var(--border);
-      border-radius: 20px;
+      border: 5px solid var(--drawer-border);
+      border-radius: 24px;
       padding: 16px;
-      margin-bottom: 20px;
-      min-height: 120px;
+      margin-bottom: 18px;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    .drawer-title { font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
+    .drawer-header {
+      font-size: 1.15rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
 
-    .bills-container {
+    .drawer-tray {
+      background: var(--drawer-inner);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 92px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.12);
     }
 
-    .bill {
-      width: 115px;
-      height: 56px;
+    .empty-msg {
+      color: #8c8c8c;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    .paper-bill {
+      width: 124px;
+      height: 60px;
       border-radius: 10px;
-      border: 3px solid #237804;
+      border: 3px solid;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 1.3rem;
-      color: #135200;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+      font-size: 1.4rem;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+      user-select: none;
     }
 
-    .bill-100 { background: #b7eb8f; border-color: #389e0d; }
+    .paper-bill::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 2px dashed currentColor;
+      border-radius: 6px;
+      opacity: 0.45;
+    }
+
+    .bill-100 { background: #b7eb8f; border-color: #237804; color: #135200; }
     .bill-50  { background: #ffd6e7; border-color: #c41d7f; color: #780650; }
     .bill-20  { background: #bae7ff; border-color: #096dd9; color: #003a8c; }
     .bill-10  { background: #ffe7ba; border-color: #d46b08; color: #873800; }
     .bill-5   { background: #efdbff; border-color: #531dab; color: #22075e; }
-    .bill-1   { background: #d9f7be; border-color: #52c41a; color: #135200; }
+    .bill-1   { background: #d9f7be; border-color: #389e0d; color: #135200; }
 
-    .receipt {
-      background: #fafafa;
-      border: 3px dashed #bfbfbf;
-      border-radius: 16px;
+    .receipt-box {
+      background: #ffffff;
+      border: 4px dashed #bfbfbf;
+      border-radius: 20px;
       padding: 16px;
-      max-height: 180px;
-      overflow-y: auto;
     }
 
-    .receipt-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px solid #e8e8e8;
-      font-size: 1.1rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="register">
-    <div class="top-bar">
-      <select id="accountSelect" onchange="switchAccount()">
-        <option value="Sophie">Sophie</option>
-        <option value="Tigran">Tigran</option>
-      </select>
-      <div class="balance-box" id="balanceDisplay">$0</div>
-    </div>
-
-    <div class="controls">
-      <input type="number" id="startCashInput" placeholder="Enter starting money..." min="0" />
-      <button class="btn-set" onclick="setStartingCash()">Set Cash</button>
-      <button class="btn-reset" onclick="resetAccount()">Reset</button>
-    </div>
-
-    <div class="items-grid">
-      <button class="item-btn btn-oj" onclick="buyItem('Orange Juice', 1)">
-        <span class="stacked-word">Orange</span>
-        <span class="stacked-word">Juice</span>
-        <span class="price-tag">$1</span>
-      </button>
-      <button class="item-btn btn-bread" onclick="buyItem('Bread', 2)">
-        <span>Bread</span>
-        <span class="price-tag">$2</span>
-      </button>
-      <button class="item-btn btn-house" onclick="buyItem('House', 10)">
-        <span>House</span>
-        <span class="price-tag">$10</span>
-      </button>
-    </div>
-
-    <div class="drawer">
-      <div class="drawer-title">Cash Drawer (Paper Bills Only)</div>
-      <div class="bills-container" id="billsContainer"></div>
-    </div>
-
-    <div class="receipt">
-      <strong>Receipt Log</strong>
-      <div id="receiptList"></div>
-    </div>
-  </div>
-
-  <script>
-    const accounts = {
-      Sophie: { balance: 25, receipts: [] },
-      Tigran: { balance: 25, receipts: [] }
-    };
-    let currentUser = 'Sophie';
-
-    function playSound(freq, type = 'sine', duration = 0.15) {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
-    }
-
-    function switchAccount() {
-      currentUser = document.getElementById('accountSelect').value;
-      document.body.className = currentUser === 'Tigran' ? 'tigran' : '';
-      playSound(520, 'triangle', 0.12);
-      render();
-    }
-
-    function setStartingCash() {
-      const val = Math.floor(Number(document.getElementById('startCashInput').value));
-      if (val >= 0) {
-        accounts[currentUser].balance = val;
-        accounts[currentUser].receipts = [];
-        playSound(660, 'sine', 0.2);
-        render();
-      }
-    }
-
-    function buyItem(name, price) {
-      const acc = accounts[currentUser];
-      if (acc.balance >= price) {
-        acc.balance -= price;
-        acc.receipts.unshift({ name, price });
-        playSound(880, 'square', 0.12);
-        setTimeout(() => playSound(1100, 'sine', 0.18), 80);
-        render();
-      } else {
-        playSound(180, 'sawtooth', 0.25);
-        alert("Not enough money in the register!");
-      }
-    }
-
-    function resetAccount() {
-      accounts[currentUser].balance = 0;
-      accounts[currentUser].receipts = [];
-      document.getElementById('startCashInput').value = '';
-      playSound(300, 'triangle', 0.2);
-      render();
-    }
-
-    function render() {
-      const acc = accounts[currentUser];
-      document.getElementById('balanceDisplay').textContent = `$${acc.balance}`;
-
-      const billsContainer = document.getElementById('billsContainer');
-      billsContainer.innerHTML = '';
-      let remaining = acc.balance;
-      const denominations =;
-
-      for (const denom of denominations) {
-        while (remaining >= denom) {
-          const billEl = document.createElement('div');
-          billEl.className = `bill bill-${denom}`;
-          billEl.textContent = `$${denom}`;
-          billsContainer.appendChild(billEl);
-          remaining -= denom;
-        }
-      }
-
-      const receiptList = document.getElementById('receiptList');
-      receiptList.innerHTML = acc.receipts.map(item => `
-        <div class="receipt-item">
-          <span>${item.name}</span>
-          <strong>-$${item.price}</strong>
-        </div>
-      `).join('');
-    }
-
-    render();
-  </script>
-</body>
-</html>
+    .receipt-title {
+      font-size: 1.15rem;
+      font-weight: bold;
