@@ -11,7 +11,6 @@
       --machine-border: #ff66b3;
       --machine-shadow: #d9368b;
       --header-bg: #ff85c0;
-      --select-bg: #ffffff;
       --select-text: #c41d7f;
       --select-border: #eb2f96;
       --drawer-bg: #fffbe6;
@@ -30,7 +29,6 @@
       --machine-border: #36cfc9;
       --machine-shadow: #08979c;
       --header-bg: #40a9ff;
-      --select-bg: #ffffff;
       --select-text: #0050b3;
       --select-border: #096dd9;
       --drawer-bg: #f6ffed;
@@ -49,7 +47,6 @@
       --machine-border: #ffa940;
       --machine-shadow: #d46b08;
       --header-bg: #fa8c16;
-      --select-bg: #ffffff;
       --select-text: #ad4e00;
       --select-border: #d46b08;
       --drawer-bg: #f6ffed;
@@ -64,7 +61,7 @@
 
     * {
       box-sizing: border-box;
-      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+      font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
     }
 
     body {
@@ -74,32 +71,29 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding: 24px 16px;
-      transition: all 0.3s ease;
+      padding: 20px 14px;
     }
 
     .register-body {
       width: 100%;
-      max-width: 640px;
+      max-width: 620px;
       background: var(--machine-bg);
       border: 6px solid var(--machine-border);
-      border-radius: 32px;
-      padding: 22px;
-      box-shadow: 0 14px 0 var(--machine-shadow), 0 20px 35px rgba(0,0,0,0.12);
+      border-radius: 30px;
+      padding: 20px;
+      box-shadow: 0 12px 0 var(--machine-shadow);
     }
 
     .top-header {
       background: var(--header-bg);
-      padding: 14px 18px;
-      border-radius: 22px;
+      padding: 14px;
+      border-radius: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 16px;
-      box-shadow: inset 0 -4px 0 rgba(0,0,0,0.12);
     }
 
     .profile-wrap {
@@ -110,42 +104,34 @@
     }
 
     select {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: bold;
-      padding: 6px 14px;
-      border-radius: 16px;
+      padding: 6px 12px;
+      border-radius: 14px;
       border: 4px solid var(--select-border);
-      background: var(--select-bg);
+      background: #ffffff;
       color: var(--select-text);
       cursor: pointer;
-      outline: none;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.15);
     }
 
     .mini-btn {
       font-size: 0.95rem;
       font-weight: bold;
       padding: 8px 12px;
-      border-radius: 14px;
-      border: 3px solid #ffffff;
-      background: rgba(0, 0, 0, 0.22);
+      border-radius: 12px;
+      border: 2px solid #ffffff;
+      background: rgba(0, 0, 0, 0.25);
       color: #ffffff;
       cursor: pointer;
-      transition: transform 0.08s;
-    }
-
-    .mini-btn:active {
-      transform: translateY(2px);
     }
 
     .account-editor {
       display: none;
       background: #ffffff;
       border: 4px solid var(--machine-border);
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+      margin-bottom: 16px;
     }
 
     .account-editor.open {
@@ -154,48 +140,38 @@
 
     .editor-title {
       font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .editor-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
 
     .editor-row input[type="text"] {
       flex: 1;
-      min-width: 160px;
+      min-width: 140px;
       font-size: 1.1rem;
-      font-weight: bold;
-      padding: 9px 12px;
+      padding: 8px 12px;
       border-radius: 12px;
       border: 3px solid #d9d9d9;
-      outline: none;
-    }
-
-    .theme-choices {
-      display: flex;
-      gap: 8px;
     }
 
     .theme-pill {
-      padding: 8px 14px;
-      border-radius: 14px;
+      padding: 8px 12px;
+      border-radius: 12px;
       border: 3px solid transparent;
       font-weight: bold;
-      font-size: 1rem;
       color: #ffffff;
       cursor: pointer;
-      opacity: 0.75;
+      opacity: 0.7;
     }
 
     .theme-pill.selected {
       opacity: 1;
-      border-color: #262626;
-      transform: scale(1.06);
+      border-color: #141414;
     }
 
     .pill-pink { background: #eb2f96; }
@@ -204,203 +180,119 @@
 
     .led-screen {
       background: #141414;
-      border: 5px solid #434343;
-      border-radius: 18px;
-      padding: 8px 20px;
+      border: 4px solid #434343;
+      border-radius: 16px;
+      padding: 6px 16px;
       text-align: right;
-      box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
     }
 
     .led-caption {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #8c8c8c;
-      letter-spacing: 1px;
-      text-transform: uppercase;
       font-family: monospace;
     }
 
     .led-amount {
-      font-family: 'Courier New', monospace;
-      font-size: 2.3rem;
+      font-family: monospace;
+      font-size: 2.1rem;
       font-weight: bold;
       color: #52c41a;
-      text-shadow: 0 0 10px rgba(82, 196, 26, 0.6);
-      line-height: 1.1;
     }
 
     .money-input-bar {
       display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 16px;
       background: #ffffff;
       padding: 10px;
-      border-radius: 20px;
+      border-radius: 18px;
       border: 3px solid var(--machine-border);
     }
 
     input[type="number"] {
       flex: 1;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: bold;
-      padding: 10px 14px;
-      border-radius: 14px;
+      padding: 8px 12px;
+      border-radius: 12px;
       border: 3px solid #d9d9d9;
-      color: #262626;
-      outline: none;
       min-width: 0;
     }
 
-    input[type="number"]:focus {
-      border-color: var(--machine-border);
-    }
-
     .action-btn {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: bold;
       border: none;
-      border-radius: 14px;
-      padding: 10px 16px;
+      border-radius: 12px;
+      padding: 10px 14px;
       color: #ffffff;
       cursor: pointer;
-      transition: transform 0.08s;
     }
 
-    .action-btn:active {
-      transform: translateY(4px);
-    }
-
-    .btn-set {
-      background: var(--set-btn);
-      box-shadow: 0 5px 0 var(--set-shadow);
-    }
-
-    .btn-reset {
-      background: #ff4d4f;
-      box-shadow: 0 5px 0 #a8071a;
-    }
-
-    .btn-cancel {
-      background: #8c8c8c;
-      box-shadow: 0 5px 0 #434343;
-    }
+    .btn-set { background: var(--set-btn); box-shadow: 0 4px 0 var(--set-shadow); }
+    .btn-reset { background: #ff4d4f; box-shadow: 0 4px 0 #a8071a; }
+    .btn-cancel { background: #8c8c8c; box-shadow: 0 4px 0 #434343; }
 
     .store-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
     .item-btn {
       border: none;
-      border-radius: 22px;
-      padding: 16px 10px;
+      border-radius: 20px;
+      padding: 14px 8px;
       color: #ffffff;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 125px;
-      transition: transform 0.08s;
-      text-shadow: 1px 2px 0 rgba(0,0,0,0.2);
+      min-height: 115px;
     }
 
-    .item-btn:active {
-      transform: translateY(6px);
-    }
+    .btn-oj { background: linear-gradient(180deg, #ffa940 0%, #fa8c16 100%); box-shadow: 0 6px 0 #ad4e00; }
+    .btn-bread { background: linear-gradient(180deg, #ffc53d 0%, #d48806 100%); box-shadow: 0 6px 0 #874d00; }
+    .btn-house { background: var(--house-grad); box-shadow: 0 6px 0 var(--house-shadow); }
 
-    .btn-oj {
-      background: linear-gradient(180deg, #ffa940 0%, #fa8c16 100%);
-      box-shadow: 0 7px 0 #ad4e00;
-    }
-
-    .btn-bread {
-      background: linear-gradient(180deg, #ffc53d 0%, #d48806 100%);
-      box-shadow: 0 7px 0 #874d00;
-    }
-
-    .btn-house {
-      background: var(--house-grad);
-      box-shadow: 0 7px 0 var(--house-shadow);
-    }
-
-    .stacked-word {
-      display: block;
-      font-size: 1.45rem;
-      font-weight: bold;
-      line-height: 1.05;
-    }
-
-    .single-word {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .price-pill {
-      margin-top: 8px;
-      background: rgba(255, 255, 255, 0.28);
-      padding: 3px 14px;
-      border-radius: 999px;
-      font-size: 1.15rem;
-      font-weight: bold;
-    }
+    .stacked-word { display: block; font-size: 1.35rem; font-weight: bold; line-height: 1.05; }
+    .single-word { font-size: 1.4rem; font-weight: bold; }
+    .price-pill { margin-top: 6px; background: rgba(255,255,255,0.28); padding: 2px 12px; border-radius: 999px; font-weight: bold; }
 
     .cash-drawer {
       background: var(--drawer-bg);
-      border: 5px solid var(--drawer-border);
-      border-radius: 24px;
-      padding: 16px;
-      margin-bottom: 18px;
-      box-shadow: inset 0 4px 10px rgba(0,0,0,0.08);
+      border: 4px solid var(--drawer-border);
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 16px;
     }
 
-    .drawer-header {
-      font-size: 1.15rem;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+    .drawer-header { font-weight: bold; margin-bottom: 10px; }
 
     .drawer-tray {
       background: var(--drawer-inner);
-      border-radius: 16px;
-      padding: 14px;
-      min-height: 92px;
+      border-radius: 14px;
+      padding: 12px;
+      min-height: 85px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
-      box-shadow: inset 0 3px 8px rgba(0,0,0,0.12);
-    }
-
-    .empty-msg {
-      color: #8c8c8c;
-      font-style: italic;
-      font-size: 1.05rem;
     }
 
     .paper-bill {
-      width: 124px;
-      height: 60px;
+      width: 112px;
+      height: 54px;
       border-radius: 10px;
       border: 3px solid;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 1.4rem;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.18);
-      user-select: none;
-    }
-
-    .paper-bill::before {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border: 2px dashed currentColor;
-      border-radius: 6px;
-      opacity: 0.45;
+      font-size: 1.3rem;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
     }
 
     .bill-100 { background: #b7eb8f; border-color: #237804; color: #135200; }
@@ -413,10 +305,206 @@
     .receipt-box {
       background: #ffffff;
       border: 4px dashed #bfbfbf;
-      border-radius: 20px;
-      padding: 16px;
+      border-radius: 18px;
+      padding: 14px;
     }
 
-    .receipt-title {
-      font-size: 1.15rem;
-      font-weight: bold;
+    .receipt-title { font-weight: bold; margin-bottom: 8px; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; }
+    .receipt-list { max-height: 150px; overflow-y: auto; }
+    .receipt-row { display: flex; justify-content: space-between; padding: 6px 2px; border-bottom: 1px solid #f0f0f0; }
+  </style>
+</head>
+<body>
+  <div class="register-body">
+    <div class="top-header">
+      <div class="profile-wrap">
+        <select id="accountSelect"></select>
+        <button type="button" class="mini-btn" id="editBtn">Edit</button>
+        <button type="button" class="mini-btn" id="addBtn">+ Add Account</button>
+      </div>
+      <div class="led-screen">
+        <div class="led-caption">BALANCE</div>
+        <div class="led-amount" id="balanceDisplay">$25</div>
+      </div>
+    </div>
+
+    <div class="account-editor" id="accountEditor">
+      <div class="editor-title" id="editorTitle">Add New Account</div>
+      <div class="editor-row">
+        <input type="text" id="accountNameInput" placeholder="Write account name..." maxlength="20" />
+        <button type="button" class="theme-pill pill-pink selected" id="themePink">Pink</button>
+        <button type="button" class="theme-pill pill-blue" id="themeBlue">Blue</button>
+        <button type="button" class="theme-pill pill-orange" id="themeOrange">Orange</button>
+        <button type="button" class="action-btn btn-set" id="saveEditorBtn">Save</button>
+        <button type="button" class="action-btn btn-cancel" id="cancelEditorBtn">Cancel</button>
+      </div>
+    </div>
+
+    <div class="money-input-bar">
+      <input type="number" id="startCashInput" placeholder="Type starting money..." min="0" />
+      <button type="button" class="action-btn btn-set" id="setCashBtn">Set Cash</button>
+      <button type="button" class="action-btn btn-reset" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="store-buttons">
+      <button type="button" class="item-btn btn-oj" id="buyOjBtn">
+        <span class="stacked-word">Orange</span>
+var accounts = [
+{ name: "Sophie", theme: "pink", balance: 25, receipts: [] },
+{ name: "Tigran", theme: "blue", balance: 25, receipts: [] }
+];
+var currentIndex = 0;
+var editorMode = "add";
+var selectedTheme = "pink";
+var audioCtx = null;
+function playSound(freq, type, duration) {
+try {
+if (!audioCtx) {
+audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+if (audioCtx.state === "suspended") {
+audioCtx.resume();
+}
+var osc = audioCtx.createOscillator();
+var gain = audioCtx.createGain();
+osc.type = type;
+osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+osc.start();
+osc.stop(audioCtx.currentTime + duration);
+} catch (err) {}
+}
+function setTheme(theme) {
+selectedTheme = theme;
+document.getElementById("themePink").className = "theme-pill pill-pink" + (theme === "pink" ? " selected" : "");
+document.getElementById("themeBlue").className = "theme-pill pill-blue" + (theme === "blue" ? " selected" : "");
+document.getElementById("themeOrange").className = "theme-pill pill-orange" + (theme === "orange" ? " selected" : "");
+}
+function openEditor(mode) {
+editorMode = mode;
+var editor = document.getElementById("accountEditor");
+var title = document.getElementById("editorTitle");
+var input = document.getElementById("accountNameInput");
+if (mode === "edit") {
+title.textContent = "Edit Account";
+input.value = accounts[currentIndex].name;
+setTheme(accounts[currentIndex].theme);
+} else {
+title.textContent = "Add New Account";
+input.value = "";
+setTheme("pink");
+}
+editor.classList.add("open");
+playSound(600, "sine", 0.1);
+}
+function saveEditor() {
+var name = document.getElementById("accountNameInput").value.trim();
+if (!name) {
+alert("Please write an account name!");
+return;
+}
+if (editorMode === "edit") {
+accounts[currentIndex].name = name;
+accounts[currentIndex].theme = selectedTheme;
+} else {
+accounts.push({ name: name, theme: selectedTheme, balance: 25, receipts: [] });
+currentIndex = accounts.length - 1;
+}
+document.getElementById("accountEditor").classList.remove("open");
+playSound(800, "sine", 0.15);
+render();
+}
+function buyItem(name, price) {
+var acc = accounts[currentIndex];
+if (acc.balance >= price) {
+acc.balance -= price;
+acc.receipts.unshift({ name: name, price: price });
+playSound(980, "square", 0.12);
+render();
+} else {
+playSound(190, "sawtooth", 0.25);
+alert("Not enough money in the drawer!");
+}
+}
+function render() {
+var select = document.getElementById("accountSelect");
+select.innerHTML = "";
+for (var i = 0; i < accounts.length; i++) {
+var opt = document.createElement("option");
+opt.value = i;
+opt.textContent = accounts[i].name;
+if (i === currentIndex) opt.selected = true;
+select.appendChild(opt);
+}
+var acc = accounts[currentIndex];
+document.body.className = acc.theme === "pink" ? "" : "theme-" + acc.theme;
+document.getElementById("balanceDisplay").textContent = "$" + acc.balance;
+var billsBox = document.getElementById("billsContainer");
+billsBox.innerHTML = "";
+var rem = acc.balance;
+var denoms =;
+if (rem === 0) {
+billsBox.textContent = "Drawer is empty";
+} else {
+for (var d = 0; d < denoms.length; d++) {
+var val = denoms[d];
+while (rem >= val) {
+var bill = document.createElement("div");
+bill.className = "paper-bill bill-" + val;
+bill.textContent = "$" + val;
+billsBox.appendChild(bill);
+rem -= val;
+}
+}
+}
+var list = document.getElementById("receiptList");
+list.innerHTML = "";
+if (acc.receipts.length === 0) {
+list.textContent = "No items bought yet";
+} else {
+for (var r = 0; r < acc.receipts.length; r++) {
+var row = document.createElement("div");
+row.className = "receipt-row";
+row.innerHTML = "" + acc.receipts[r].name + "-$" + acc.receipts[r].price + "";
+list.appendChild(row);
+}
+}
+}
+document.getElementById("accountSelect").addEventListener("change", function() {
+currentIndex = Number(this.value);
+document.getElementById("accountEditor").classList.remove("open");
+playSound(520, "triangle", 0.12);
+render();
+});
+document.getElementById("editBtn").addEventListener("click", function() { openEditor("edit"); });
+document.getElementById("addBtn").addEventListener("click", function() { openEditor("add"); });
+document.getElementById("themePink").addEventListener("click", function() { setTheme("pink"); });
+document.getElementById("themeBlue").addEventListener("click", function() { setTheme("blue"); });
+document.getElementById("themeOrange").addEventListener("click", function() { setTheme("orange"); });
+document.getElementById("saveEditorBtn").addEventListener("click", saveEditor);
+document.getElementById("cancelEditorBtn").addEventListener("click", function() {
+document.getElementById("accountEditor").classList.remove("open");
+});
+document.getElementById("setCashBtn").addEventListener("click", function() {
+var val = Math.floor(Number(document.getElementById("startCashInput").value));
+if (document.getElementById("startCashInput").value !== "" && val >= 0) {
+accounts[currentIndex].balance = val;
+accounts[currentIndex].receipts = [];
+playSound(700, "sine", 0.15);
+render();
+}
+});
+document.getElementById("resetBtn").addEventListener("click", function() {
+accounts[currentIndex].balance = 0;
+accounts[currentIndex].receipts = [];
+document.getElementById("startCashInput").value = "";
+playSound(260, "triangle", 0.18);
+render();
+});
+document.getElementById("buyOjBtn").addEventListener("click", function() { buyItem("Orange Juice", 1); });
+document.getElementById("buyBreadBtn").addEventListener("click", function() { buyItem("Bread", 2); });
+document.getElementById("buyHouseBtn").addEventListener("click", function() { buyItem("House", 10); });
+render();
